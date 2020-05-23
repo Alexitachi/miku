@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+      input{
+        padding-top: 10px;
+        color:black;
+    }
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="box is-small" style="width: 50%;  margin: auto; top: 50%; border: 3px solid black; background: url('https://image.myanimelist.net/ui/5LYzTBVoS196gvYvw3zjwB4UY_GX6liJYaKkV-DqJ7k');backdrop-filter: blur(8px); background-size: cover; " >
+    
+<article class="media" style= "text-align: center;">
+  <div class="media-content">
+<p><a href="{% url 'topic' topic.id %}" style="color: black; font-size: xx-large; font-weight: bold;">{{ topic }}</a></p>
+<p  style="color: black; padding-top: 20px;padding-bottom: 10px; font-weight: bold;">Edit entry:</p>
+
+<form action="{% url 'edit_entry' entry.id %}" method='post'>
+    {% csrf_token %}
+    <p >{{ form.as_p }}</p>
+    <button name='submit' class="button is-danger"  >save changes</button>
+</form>
+{% endblock content %}

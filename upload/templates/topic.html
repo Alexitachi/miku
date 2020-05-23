@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<style> 
+    h5{
+        color: white;;
+    }
+    li{
+        color: white;
+    }
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="box is-small" style="width: 50%;  margin: auto; top: 50%; border: 3px solid black; background: url(https://static.zerochan.net/Irozuku.Sekai.no.Ashita.kara.full.2387663.jpg);backdrop-filter: blur(8px); background-size: cover; " >
+    
+<article class="media" style= "text-align: center;">
+  <div class="media-content">
+<h5><p style="color: black; font-size: x-large; font-weight: bold; padding-bottom: 20px;">Topic: {{ topic }}</p></h5>
+<h5><p style="color: black; font-size: large; font-weight: bold; padding-bottom: 10px;">Entries:</p></h5>
+<p style="padding-bottom: 10px;">
+    <a href="{% url 'new_entry' topic.id %}" class="button is-black">add new entry</a>
+    </p>
+<ul>
+{% for entry in entries %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3>
+                <p style="font-size: small;">{{ entry.date_added|date:'M d, Y H:i' }} @{{ entry.owner }}</p>
+                <small>
+                    <a href="{% url 'edit_entry' entry.id %}" style="font-size: medium;">edit entry</a>
+                </small>
+            </h3>
+    </div>  
+    <div class="panel panel-default"  style="padding-top:2px;">
+        <div class="panel-heading" style="background-color: #1c1c1c;">
+        <div class="panel-body" style="color: white;">
+            {{ entry.text|linebreaks }}
+        </div>
+        </div>
+    </div>
+    </div> <!-- panel -->
+{% empty %}
+    <li style="color: rgb(0, 255, 136);">
+        There are no entries for this topic yet.
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<style>
+  
+
+.form-wrap {
+  width: 550px;
+  background: #121212;
+  border-radius: 20px;
+  }
+.form-wrap *{transition: .1s linear}
+.profile {
+  width: 240px;
+  float: left;
+  text-align: center;
+  padding: 30px;
+  
+}
+
+
+.form-wrap:after{
+  content: "";
+  display: table;
+  clear: both;
+}
+form div {
+  margin-bottom: 15px;
+  position: relative;
+}
+
+
+input[type="text"], input[type="email"] {
+  width: 90%;
+  padding: 10px 15px;
+  border-width: 0;
+  background: #e6e6e6;
+  outline: none;
+  margin: 0;
+}
+.is-primary{
+  padding-top: 10px;
+  padding-bottom: px;
+}
+
+@media (max-width: 600px) {
+  body {display: block}
+  .form-wrap {margin: 20px auto; max-width: 550px; width:100%}
+  .profile, form {float: none; width: 100%}
+  form {border-radius: 0 0 20px 20px}
+}
+
+
+
+
+</style>
+
+    <div style="position: relative; /*or fixed*/; height: 300px;left: calc(50% - 240px); right:calc(60% - 240px); top:100px;  ">
+    <div class="form-wrap">
+        <div class="profile"><img name="prof" src="{{user.profile.image.url}}" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQJSNLz_s4Yc5W6Pr37UBJ0DJu8Td_SyHQyV1eV5GJxpK4keAGd&usqp=CAU'" alt="" style=" width: 100px;
+          height: 100px;
+          position: relative;
+          overflow: hidden;
+          border-radius: 50%;">
+            <div class="title" style="padding-top: 10px; color: aliceblue; font-size: medium;"><a href="{% url 'profile' %}" style="color: white;">@{{ user.username }}</a></div>
+        </div>
+        <form method="post" enctype="multipart/form-data" style="text-align: center; margin: 0 auto; background: white;
+        float: left;
+        width: calc(100% - 240px);
+        padding: 10px;
+        border-radius: 0 20px 20px 0;
+        color: #7b7b7b;  ">
+        {% csrf_token %}
+          <div>
+            <label>Username</label>
+            <p>{{ u_form.username }}</p> 
+          </div>
+          <div>
+            <label for="email">E-mail</label>
+            <p>{{ u_form.email }}</p>
+          </div>
+          <div>
+            <label for="description">Description</label>
+            <p>{{ p_form.description }}</p>
+          </div>
+          <div>
+            <label>Profile-Image</label>
+            <small>{{ p_form.image }}</small>
+          </div>
+          <div>
+            <label>Insta Profile</label>
+            <p>{{ p_form.insta }}</p> 
+          </div>
+          <div>
+            <label>Linkedin Profile</label>
+            <p>{{ p_form.li }}</p> 
+          </div>
+          <td><button type="update" class="button is-black small-text">Update Profile</button></td>
+        </form> 
+      </div>
+    </div>
+    
+{% endblock %}
+
+
+     

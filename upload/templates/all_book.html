@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+
+<!DOCTYPE >
+<html>
+  
+    {% block content %}
+      <div class="box is-small" style="width: 60%;  margin: auto; top: 50%; border: 4px solid black;" >
+          <article class="media" style= "text-align: center;padding: 10px;">
+            <div class="media-content">
+          <table class="table is-fullwidth">
+           
+            <thead>
+                    <th>Cover</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Book</th>
+                    <th>Uploaded By</th>
+                    <th>Forum</th>
+                    
+            </thead>
+            
+            
+            {% for book in books %}
+            <tbody> 
+                
+                    <td><img  src="{{ book.cover.url }}" style="width: 200px; height: 200px;"></td>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author }}</td>
+                    <td><a href="{{ book.pdf.url }}" class="button is-black">Download</a></td>
+                    <td>{{ book.owner }}</td>
+                    <td><div class="media-right">
+                      <a href="{% url 'topics' book.pk %}">
+                          <button class="button is-danger">Discuss</button>
+                      </a>
+                  </div></td>
+               
+              
+          </tbody>
+          {% endfor %}
+   
+    </table>
+      </article>
+      </div>
+    {% endblock %}
+</html> 

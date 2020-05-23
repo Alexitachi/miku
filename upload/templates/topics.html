@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="box is-small" style="width: 50%;  margin: auto; top: 50%; border: 3px solid black; background: url(https://i.pinimg.com/originals/53/4b/55/534b55cd46c7a500f0660c9441943dc5.jpg);backdrop-filter: blur(8px); background-size: cover; " >
+    
+<article class="media" style= "text-align: center;">
+  <div class="media-content">
+
+    {% block header %}
+        <style>
+            h2{
+                color: rgb(0, 0, 0);
+                font-size: x-large;
+                font-weight: bold;
+            }   
+
+            #input{
+                width: 100px;
+            }
+        </style>
+        <h2>{{ book.title }} - Topics</h2>
+    {% endblock header %}
+    <p style="padding-top: 15px;">Enter your topic</p>
+    <div style="width: 100%;">
+        <style>
+              input{
+                  padding-left: 10px;
+                width: 89%;
+                padding-right: 5px;
+            }
+            form{
+                padding-top: 5px;
+                padding-left: 5px;
+            }
+        </style>
+    <form method="POST" action="">
+        {% csrf_token %}  
+        
+        <ln style="padding-top: 8px; padding-bottom: 8px;padding-right: 5px; ">{{ form }}</ln>
+        <button type="submit" class="button is-black" style="padding-left:10px">Submit</button>
+        </form>
+    </div>
+    <ul>
+        {% for topic in topics %}
+            <div class="panel panel-default"  style="padding-top:2px;">
+                <div class="panel-heading" style="background: url(https://i.pinimg.com/originals/f8/5a/f0/f85af02908690e9062a72fd32928600e.jpg); background-size: cover;">
+                    <p style="font-size: small;">{{ topic.date_added|date:'M d, Y H:i' }} @{{topic.owner}}</p>
+                </div>
+                <div class="panel-heading" style="background-color: #1c1c1c;">
+                    <h4>
+                        <a href="{% url 'topic' topic.id %}" style="color: white;">{{ topic }}</a>
+                    </h4>
+            </div>
+            
+        </div>
+        {% empty %}
+            <style>
+                li{
+                    color: rgb(0, 255, 136);
+                }
+            </style>
+            <li style="padding-top: 6px;">No topics have been added yet.</li>
+        {% endfor %}
+    </ul>
+    
+{% endblock content %}

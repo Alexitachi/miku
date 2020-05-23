@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+
+{% block content %}
+<style> 
+    p{
+        color: white;;
+
+    }
+    input{
+        padding-bottom: 10px;
+        color:black;
+    }
+</style>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+<div class="box is-small" style="width: 50%;  margin: auto; top: 50%; border: 3px solid black; background: url('https://i.ibb.co/nRm2ZJT/imageedit-5-9486225954.png');backdrop-filter: blur(8px); background-size: cover; " >
+    
+<article class="media" style= "text-align: center;">
+  <div class="media-content">
+<p><a href="{% url 'topic' topic.id %}" style="color: black; font-size: xx-large; font-weight: bold;">{{ topic }}</a></p>
+<p style="color: black; padding-top: 20px;padding-bottom: 10px; font-weight: bold;">Add a new entry:</p>
+
+<form action="{% url 'new_entry' topic.id %}" method='post'>
+{% csrf_token %}
+<p style="padding-bottom: 10px;">{{ form }}</p>
+<button name='submit' class="button is-danger" >add entry</button>
+</form>
+{% endblock content %}

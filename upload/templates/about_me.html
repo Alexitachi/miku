@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link rel="stylesheet" href="style.css" />
+
+        <title>library</title>
+    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    
+    
+            <nav class="navbar navbar-height:3.25rem;" role="navigation" aria-label="main navigation">
+                <div class="navbar-brand">
+                  <a class="navbar-item" href="{% url 'home' %}">
+                    <img src="https://i.ibb.co/YTj62f9/imageedit-2-8584505892.png" width="112" height="28">
+                  </a>
+              
+                  <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                  </a>
+                </div>
+              
+                <div id="navbarBasicExample" class="navbar-menu ">
+                  <div class="navbar-start">
+                    <a class="navbar-item " href="{% url 'home' %}">
+                      <p style="color: #fff;font-weight: 400;">Home</p>
+                    </a>
+              
+                    <a class="navbar-item " href="{% url 'book_all' %}">
+                      <p style="color: #fff;font-weight: 400;">All Books</p>
+                    </a>
+              
+                    <div class="navbar-item has-dropdown is-hoverable" >
+                      <a class="navbar-link">
+                        <p style="color: #fff;font-weight: 400; ">More</p>
+                      </a>
+              
+                      <div class="navbar-dropdown">
+                        <a class="navbar-item" href="{% url 'profile' %}">
+                          Profile
+                        </a>
+    
+                        <a class="navbar-item" href="{% url 'upload_book' %}">
+                          Upload Books
+                        </a>
+                        <a class="navbar-item" href="{% url 'book_list' %}">
+                          Uploaded Books
+                        </a>
+                        <hr class="navbar-divider">
+                        <a class="navbar-item" href="{% url 'query' %}">
+                          Report an issue
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+    
+                    {% if user.is_authenticated %}
+                        <form class="logout-link" action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <div class="navbar-end">
+                        <p style="padding-right: 15px;padding-top: 20px;" >Hello, {{ user.username }}</p> 
+                        <div style="padding-right: 10px; padding-top: 10px;" ><button type="submit" class="button is-white" >LogOut</button>
+                        </div>
+                        </div>
+                        </form>
+                    {% else %}
+                      <a href="{% url 'register_page' %}" style="padding-top: 10px;padding-right: 15px;">
+                        <button type="submit" class="button is-white">Log In/Register</button></a>
+                      
+                    {% endif %}
+                      
+                   
+                </div>
+              </nav>
+
+
+    </head>
+
+
+<style>
+  
+     
+  .navbar-brand{
+		background-color: #1c1c1c;
+	}
+
+	.navbar-start{
+		background-color: #1c1c1c;
+
+    
+	}
+.navbar{
+	background-color: #1c1c1c;
+	color: rgb(255, 255, 255);
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: scroll;
+    font-family: "Monument Extended", Arial, Helvetica, sans-serif;
+    background: #1c1c1c;
+    background-size: cover;
+    transform-origin: center center 0;
+}
+
+body {
+    color: white;
+    margin: 0;
+    padding: 0;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+header {
+    box-sizing: border-box;
+    min-height: 100vh;
+    position: relative;
+    transform-style: inherit;
+    width: 100vw;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+header h1 {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+header,
+header:before {
+    background: 50% 50% / cover;
+}
+
+.container {
+
+    position: relative;
+    top: 100vh;
+    width: 100%;
+    background: #1c1c1c;
+    line-height: 30px;
+    font-weight: lighter;
+    padding: 40px;
+    color: rgb(255, 255, 255);
+}
+
+.custom-bg{
+ 
+    position: absolute;
+    transform-style: inherit;
+    width: 100vw;
+    text-align: center;
+	overflow: hidden;
+	font:300 16px/18px Roboto, sans-serif;
+    display: block;
+    background: url("https://images.unsplash.com/photo-1569701813229-33284b643e3c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1388&q=80");
+    background-size: cover;
+    transform-origin: center center 0;
+    transform: translateZ(-1px) scale(2);
+    z-index: -1;
+    min-height: 100vh;
+}
+
+.text-block {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(32, 32, 32, 0.4);
+    color: rgb(255, 255, 255);
+    border: 3px solid #f1f1f1;
+    width: 40%;
+  padding: 20px;
+}
+
+</style>
+
+
+
+<section class="section custom-bg"> 
+    <header>
+        <div class="text-block">
+        <p class="love" style="font-weight: bold; font-size: 24px;">Made with ♥ by <a href="http://www.makecodenotwar.co/" target="_blank" style="color: #ff7474;">Shubhranshu</a></p>
+        </div>
+    </header>
+
+</section>
+    <body>
+        
+   
+        <div class="container">
+          <p style="text-align: center;">
+            Miku is an open project: the software is open, the data are open, 
+            the documentation is open, and I welcome your contribution. Whether you fix a typo, 
+            add a book, or write a widget--it's all welcome. I need a small team of fantastic programmers
+            because i can't do it alone!.
+          
+              One web page for every book ever published. It's a lofty but achievable goal.
+
+              To build Miku, we need hundreds of millions of books, records, a wiki interface,
+               and lots of people who are willing to contribute their time and effort to building the site. 
+            </p>
+            
+            <p style="text-align: center; padding-top: 10px;">
+              How can you help? Improve the records we have for the books you love – every record is fully editable by clicking the “edit” button on the page.
+              If we don't have a record for a book, you can create one. If you're a library with digitized resources, tell us where they are and we'll upload it for you.
+              To get the source code click on my name it will take to you git repository.
+            </p>
+            <p style="text-align: center; padding-top: 10px;">
+              In the forum in miku you can discuss topics in a book with the team: post questions, comment on it and document answers.
+              If you watch a forum you will automatically watch all messages within this forum.To edit a message in a forum select the message from the forum and in the message details click the Edit button in the top right corner of the message.
+              To create a new forum in your project, navigate to -> Book and click the Forum button.
+            </p>
+            <p style="text-align: center; padding-top: 10px;">
+              If you did not find what you were looking for, If you need help from the community or want to support others, 
+              If you are eligible for professional support and have more questions - you can upload your query.
+            </p>
+            <p style="text-align: center;">Miku will grow with time and will try to improve your experience.</p>
+            
+            <div style="font-size: 100px; text-align: center; color: tomato; padding-top: 50px;"> ♥ </div>
+            <p style="text-align: center; color: rgb(255, 255, 255); padding-top: 30px;">
+              Our hope is that libraries and individual book readers will join this project and together we can build towards universal access to all knowledge.
+            </p>
+        </div>
+       
+        
+        
+    </body>
+   
+</html>
